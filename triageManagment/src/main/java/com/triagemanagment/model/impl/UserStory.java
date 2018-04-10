@@ -1,10 +1,14 @@
 package com.triagemanagment.model.impl;
 
 
+import java.sql.Blob;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.triagemanagment.model.interfaces.IUserStory;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -16,7 +20,9 @@ public class UserStory implements IUserStory{
 	@Id
 	private String id;
 	private String descreption;
-//	private List<String> changeLists;
+	private String changeLists;
+	
+	@JsonProperty("ext_systems")
 	private String extSystems;
 	
 	@Override
@@ -43,6 +49,17 @@ public class UserStory implements IUserStory{
 	@Override
 	public void setExtSystems(String extSystems) {
 		this.extSystems = extSystems;
+	}
+	@Override
+	public String getChangeLists() {
+		
+		return changeLists;
+	}
+	
+	@Override
+	public void setChangeLists(String changeLists) {
+		this.changeLists = changeLists;
+		
 	}
 	
 	

@@ -30,7 +30,8 @@ public class TriageController {
 	 @Autowired
 	 private static final Logger logger =  LoggerFactory.getLogger(TriageController.class);
 	 
-	 	@RequestMapping(value = "/insertUs", method = RequestMethod.POST)
+	 	@CrossOrigin(origins = "http://localhost:8000")
+	 	@RequestMapping(value = "/insertUs", method = RequestMethod.POST, consumes = {"application/json"})
 	    public void newUserStory(@RequestBody UserStory us) {
 	 		logger.info("Inserting the following:");
 	 		logger.info("us.getId() :" + us.getId());
