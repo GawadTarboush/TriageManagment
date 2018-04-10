@@ -30,12 +30,14 @@ public class TriageController {
 	 @Autowired
 	 private static final Logger logger =  LoggerFactory.getLogger(TriageController.class);
 	 
-	 	@RequestMapping(value = "/insertUs", method = RequestMethod.POST)
-	    public void newUserStory(@RequestBody UserStory us) {
+	 	@CrossOrigin(origins = "http://localhost:8000")
+	 	@RequestMapping(value = "/insertUs", method = RequestMethod.POST, consumes = {"application/json"})
+	    public ResponseEntity<String> newUserStory(@RequestBody UserStory us) {
 	 		logger.info("Inserting the following:");
 	 		logger.info("us.getId() :" + us.getId());
 	 		logger.info("us.getExtSystems() :" + us.getExtSystems());
 	         insertService.insertUs(us);
+	         return new ResponseEntity<String>("US updated successfuly!", HttpStatus.OK);
 	    }
 	 	
 	 	@CrossOrigin(origins = "http://localhost:8000")
