@@ -13,8 +13,10 @@ class ViewUs extends Component {
           
             console.log(jsonResult);
             document.getElementById('fieldId').value  = jsonResult.id;
-            document.getElementById('fieldExtSystem').value  = jsonResult.extSystems;
+            document.getElementById('fieldExtSystem').value  = jsonResult.ext_systems;
             document.getElementById('fieldDescreption').value  = jsonResult.descreption;
+            document.getElementById('changeLList').value = jsonResult.changeLists;
+            
             
             })
         }
@@ -30,9 +32,10 @@ class ViewUs extends Component {
             <form>
                 <fieldset>
                     <legend>Response:</legend>
-                    Id: <input type="fieldId" id="fieldId"/><br/>
-                    Descreption: <input type="fieldDescreption" id="fieldDescreption"/><br/>
-                    ExtSystem: <input type="fieldExtSystem" id="fieldExtSystem"/>
+                    Id: <textArea type="fieldId" id="fieldId"/><br/>
+                    Descreption: <textArea type="fieldDescreption" id="fieldDescreption"/><br/>
+                    ExtSystem: <textArea type="fieldExtSystem" id="fieldExtSystem"/><br/>
+                    Change Lists: <textArea type="changeLList" id="changeLList"/>
                 </fieldset>
             </form>
            
