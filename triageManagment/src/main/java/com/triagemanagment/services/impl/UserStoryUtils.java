@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.triagemanagment.model.impl.UserStory;
 import com.triagemanagment.repository.UserStoryRepository;
-import com.triagemanagment.services.interfaces.IGetUserStoryById;
 import com.triagemanagment.services.interfaces.IUserStoryUtils;
 
 public class UserStoryUtils implements IUserStoryUtils {
@@ -23,6 +22,13 @@ public class UserStoryUtils implements IUserStoryUtils {
 	public void insertUs(UserStory us) {
 		
 		userStoryRepository.saveAndFlush(us);
+		
+	}
+
+	@Override
+	public void deleteById(String id) 
+	{
+		userStoryRepository.delete(id);
 		
 	}
 	

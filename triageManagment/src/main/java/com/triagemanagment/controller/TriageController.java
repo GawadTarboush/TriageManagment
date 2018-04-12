@@ -60,6 +60,7 @@ public class TriageController {
 	 		{
 	 			return new ResponseEntity<UserStory>(response, HttpStatus.NOT_FOUND);
 	 		}
+	 		userStoryUtils.deleteById(id);
 	 		return new ResponseEntity<UserStory>(response, HttpStatus.OK);
 	 	}
 	 	

@@ -9,5 +9,7 @@ public interface IUserStoryUtils {
 
 	public void insertUs(UserStory us);
 	
-	public UserStory getById(String id); 
+	public UserStory getById(String id);
+
+	public void deleteById(String id); 
 }
