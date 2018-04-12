@@ -20,15 +20,43 @@ class ViewUs extends Component {
             
             })
         }
+
+        callDeleteApi(){
+            let userIdGet = document.getElementById('userId');
+            fetch(`http://localhost:8181/deleteUserStoriesById/${userIdGet.value}`)
+          
+            .then((result) => {
+           
+            return result.json();
+            }).then((jsonResult) => {
+          
+            console.log(jsonResult);
+                let responseStatus = jsonResult.id; 
+            if(responseStatus != null){
+                alert("US with the id: " + jsonResult.id + " removed successfuly!");
+            }
+            else
+            {
+                alert(jsonResult.message);
+            }
+            
+            
+            
+            })
+        }
+
    render() {
       return (
          <div>
+               
              <center>
                 <input id='userId'></input>
-                <button onClick={() => this.callApi()}>
-                    Click here to call API
-                </button>
+                <div className="btn-group special" role="group" aria-label="...">
+                        <button type="button" className="btn btn-default" onClick={() => this.callDeleteApi()}> Delete US </button>
+                        <button type="button" className="btn btn-default" onClick={() => this.callApi()}> View US </button>
+                </div>         
             </center>
+            
             <form>
                 <fieldset>
                     <legend>Response:</legend>
