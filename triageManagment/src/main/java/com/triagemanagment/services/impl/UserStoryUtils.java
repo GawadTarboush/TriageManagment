@@ -1,12 +1,15 @@
 package com.triagemanagment.services.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.triagemanagment.model.impl.UserStory;
 import com.triagemanagment.repository.UserStoryRepository;
 import com.triagemanagment.services.interfaces.IGetUserStoryById;
+import com.triagemanagment.services.interfaces.IUserStoryUtils;
 
-public class GetUserStoryById implements IGetUserStoryById {
+public class UserStoryUtils implements IUserStoryUtils {
 
 	@Autowired
 	private UserStoryRepository userStoryRepository;
@@ -16,4 +19,11 @@ public class GetUserStoryById implements IGetUserStoryById {
 		return (UserStory)userStoryRepository.getOne(id);
 	}
 
+	@Transactional
+	public void insertUs(UserStory us) {
+		
+		userStoryRepository.saveAndFlush(us);
+		
+	}
+	
 }

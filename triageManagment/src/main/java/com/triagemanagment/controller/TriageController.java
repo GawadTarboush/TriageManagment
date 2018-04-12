@@ -15,17 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.triagemanagment.model.impl.UserStory;
-import com.triagemanagment.services.interfaces.IGetUserStoryById;
-import com.triagemanagment.services.interfaces.IInsertService;
+import com.triagemanagment.services.interfaces.IUserStoryUtils;
 
 @Controller
 public class TriageController {
 	 
-	 @Autowired
-	 private IInsertService insertService;
 	 
 	 @Autowired
-	 private IGetUserStoryById getUserStoryById;
+	 private IUserStoryUtils userStoryUtils;
 	 
 	 @Autowired
 	 private static final Logger logger =  LoggerFactory.getLogger(TriageController.class);
@@ -36,7 +33,7 @@ public class TriageController {
 	 		logger.info("Inserting the following:");
 	 		logger.info("us.getId() :" + us.getId());
 	 		logger.info("us.getExtSystems() :" + us.getExtSystems());
-	         insertService.insertUs(us);
+	 		userStoryUtils.insertUs(us);
 	         return new ResponseEntity<String>("US updated successfuly!", HttpStatus.OK);
 	    }
 	 	
@@ -44,7 +41,7 @@ public class TriageController {
 	 	@GetMapping(value = "/getUsById/{id}")
 	 	public @ResponseBody ResponseEntity<UserStory> getUserStoriesById(@PathVariable("id") String id) {
 	 		logger.info("Fetching User with id {}", id);
-	 		UserStory response = getUserStoryById.getById(id);
+	 		UserStory response = userStoryUtils.getById(id);
 	 		return new ResponseEntity<UserStory>(response, HttpStatus.OK);
 	 	}
 	 	
@@ -52,5 +49,20 @@ public class TriageController {
 	 	public String index() {
 	 		return "index";
 	 	}
+	 	
+	 	
+	 	@CrossOrigin(origins = "http://localhost:8000")
+	 	@GetMapping(value = "/deleteUserStoriesById/{id}")
+	 	public @ResponseBody ResponseEntity<UserStory> deleteUserStoriesById(@PathVariable("id") String id) {
+	 		logger.info("Removing User with id {}", id);
+	 		UserStory response = userStoryUtils.getById(id);
+	 		if (response==null)
+	 		{
+	 			return new ResponseEntity<UserStory>(response, HttpStatus.NOT_FOUND);
+	 		}
+	 		return new ResponseEntity<UserStory>(response, HttpStatus.OK);
+	 	}
+	 	
+	 	
 	 	
 }

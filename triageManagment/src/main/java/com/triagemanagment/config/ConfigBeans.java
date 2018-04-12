@@ -5,10 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.triagemanagment.model.impl.UserStory;
 import com.triagemanagment.model.interfaces.IUserStory;
-import com.triagemanagment.services.impl.GetUserStoryById;
-import com.triagemanagment.services.impl.InsertService;
-import com.triagemanagment.services.interfaces.IGetUserStoryById;
-import com.triagemanagment.services.interfaces.IInsertService;
+import com.triagemanagment.services.impl.UserStoryUtils;
+import com.triagemanagment.services.interfaces.IUserStoryUtils;
 
 @Configuration
 public class ConfigBeans {
@@ -18,13 +16,9 @@ public class ConfigBeans {
 		return new UserStory();
 	}
 	
+
 	@Bean
-	public IInsertService insertService() {
-		return new InsertService();
-	}
-	
-	@Bean
-	public IGetUserStoryById getUserStoryById() {
-		return new GetUserStoryById();
+	public IUserStoryUtils getUserStoryUtils() {
+		return new UserStoryUtils();
 	}
 }
