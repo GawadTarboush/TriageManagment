@@ -12,6 +12,10 @@ public class UserStoryUtils implements IUserStoryUtils {
 
 	@Autowired
 	private UserStoryRepository userStoryRepository;
+	
+	@Autowired
+	KafkaProducer producer;
+	
 	@Override
 	public UserStory getById(String id) {
 
@@ -22,6 +26,7 @@ public class UserStoryUtils implements IUserStoryUtils {
 	public void insertUs(UserStory us) {
 		
 		userStoryRepository.saveAndFlush(us);
+		producer.send(us.getId());
 		
 	}
 
