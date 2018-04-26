@@ -23,11 +23,10 @@ public class UserStoryUtils implements IUserStoryUtils {
 	}
 
 	@Transactional
-	public void insertUs(UserStory us) {
-		
+	public void insertUs(UserStory us) 
+	{
 		userStoryRepository.saveAndFlush(us);
 		producer.send(us.getId());
-		
 	}
 
 	@Override

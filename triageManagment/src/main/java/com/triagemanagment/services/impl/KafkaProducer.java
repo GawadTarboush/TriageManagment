@@ -18,6 +18,7 @@ public class KafkaProducer
 	 @Value("${jsa.kafka.topic}")
 	 String kafkaTopic;
 	 
+	 
 	 public void send(String data)
 	 {
 		 logger.info("Sending Data ={}"+data);
