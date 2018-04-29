@@ -5,4 +5,4 @@ spring:
   config:
    server:
     git:
-     uri:file://${user.home}/sccs
+     uri:https://github.com/GawadTarboush/TriageManagment/tree/master/triage-config-server/sccs
